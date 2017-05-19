@@ -1,0 +1,11 @@
+{
+  "name": "html-webpack-inject-bundle-plugin",
+  "version": "1.0.1",
+  "description": "a plugin for html-webpack-plugin,for injecting bundle into a certain point in HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhangyiding@corp.netease.com",
+  "license": "ISC"
+}
