@@ -1,9 +1,11 @@
 var reg = /<!--\s*bundle\s*-->/;
+var asyncScript = false;
 
 function htmlWebpackInjectBundlePlugin(options) {
   if (options && options.reg) {
     reg = options.reg;
   }
+  if (options && options.async) asyncScript = true;
 }
 
 htmlWebpackInjectBundlePlugin.prototype.apply = function (compiler) {
@@ -16,7 +18,8 @@ htmlWebpackInjectBundlePlugin.prototype.apply = function (compiler) {
       var assets;
       try {
         assets = htmlPluginData.assets.js.reduce((pre, cur, idx) => {
-          return pre += '<script src="' + cur + '"></script>';
+          if (cur) return pre += '<script ' + (asyncScript ? 'async' : '') + ' src="' + cur + '"></script>';
+          return pre;
         }, '');
       } catch (e) {
         console.log('no js found');
